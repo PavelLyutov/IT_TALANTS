@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.util.*;
 
 public class BookReader {
+
      private TreeMap<String ,Integer > mostCommon = new TreeMap<String, Integer>();
     File f ;
     private int numberOfRows=0;
@@ -13,6 +14,7 @@ public class BookReader {
     private int numberOfCommas = 0;
     private int counterPeace = 0;
     private int counterWar = 0;
+
 
     public BookReader(String name) {
         this.f = new File(name);
@@ -43,7 +45,6 @@ public class BookReader {
             numberOfWords+= fillTreeMapWithWords(wordsInRow,mostCommon);
             numberOfRows++;
         }
-
         System.out.println("Броят редове е " + numberOfRows);
         System.out.println("Броят думи е " + numberOfWords);
         System.out.println("Броят запетайки е " + numberOfCommas);
@@ -94,12 +95,13 @@ public class BookReader {
     }
 
      int countPeace(String word){
-        if(word.equals("мир") || word.equals("мирът") || word.equals("мира")|| word.equals("мирния")|| word.equals("мирните")|| word.equals("мирно")){
-            return 1;
-        }else {
-            return 0;
-        }
-    }
+                if (word.equals("мир") || word.equals("мирът") || word.equals("мира") || word.equals("мирния") || word.equals("мирните") || word.equals("мирно")) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+
 
      int countWar(String word){
         if(word.startsWith("война")){
@@ -110,6 +112,7 @@ public class BookReader {
     }
 
      void writeAllWordsToFiles(TreeMap<String,Integer> treeMap) {
+
 
         TreeMap<String,ArrayList<String>> allWords = new TreeMap<>();
          for (Map.Entry<String,Integer> entry : entriesSortedByValues(treeMap)
@@ -134,40 +137,6 @@ public class BookReader {
                 }
 
          }
-
-
-
-         //        ArrayList<String> words;
-//        int i = 1;
-//        while(true){
-//            words = new ArrayList<>();
-//            for (Map.Entry<String, Integer> entry : entriesSortedByValues(treeMap)
-//                 ) {
-//                if(entry.getKey().length()==i){
-//                    words.add(entry.getKey());
-//                    mostCommon.remove(entry.getKey());
-//
-//                }
-//            }
-//            String name = i + "letters.txt";
-//            File f =new File(name);
-//            try(PrintStream ps = new PrintStream(f)){
-//
-//                for (Iterator it = words.iterator() ; it.hasNext();
-//                     ) {
-//                    ps.println(it.next());
-//                }
-//
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//                i++;
-//            if(mostCommon.size()==0){
-//                break;
-//            }
-
-
-
 
     }
 
