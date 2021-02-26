@@ -91,6 +91,9 @@ public  class RakiaBrewery {
                 if (k.checkFullness()) {
                     notifyAll();
                 }
+                if(this.getTotalRakiaMade()>=20){
+                    notifyAll();
+                }
                 break;
             }
 
@@ -98,27 +101,32 @@ public  class RakiaBrewery {
     }
 
     public synchronized void emptyKazan() {
+
         while (true) {
+            if(getTotalRakiaMade()>=20){
+                break;
+            }
             Kazan k = findFullKazan();
             if (k == null) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println("Мазата се напълни !");
                 }
             } else {
                 try {
                     Thread.sleep(1000);
+                    Random r = new Random();
+                    int litri = r.nextInt(7) + 1;
+                    System.out.println( "майстор " + Thread.currentThread().getName() +  " извари "+  litri + " " + k.getPlodove().get(0).getType() + " чудна ракийка(" +this.getTotalRakiaMade() + " още литри в мазата)");
+                    setTotalRakiaMade(this.getTotalRakiaMade() + litri);
+                    k.removeFruitsFromKazan();
+                    System.out.println();
+                    notifyAll();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Random r = new Random();
-                int litri = r.nextInt(7) + 1;
-                System.out.println( "майстор " + Thread.currentThread().getName() +  " извари "+  litri + " " + k.getPlodove().get(0).getType() + " чудна ракийка(" +this.getTotalRakiaMade() + " още литри в мазата)");
-                setTotalRakiaMade(this.getTotalRakiaMade() + litri);
-                k.removeFruitsFromKazan();
-                System.out.println();
-                notifyAll();
+
                 break;
             }
         }
@@ -147,6 +155,14 @@ public  class RakiaBrewery {
         }
     }
 
+
+    @Override
+    public String toString() {
+        return "RakiaBrewery{" +
+                "berachi=" + berachi +
+                ", rakidjii=" + rakidjii +
+                '}';
+    }
 }
 
 

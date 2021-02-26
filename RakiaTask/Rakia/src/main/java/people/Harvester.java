@@ -52,4 +52,12 @@ public class Harvester extends Thread {
 
     }
 
+
+    @Override
+    public String toString() {
+        return "Harvester{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

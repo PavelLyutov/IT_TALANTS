@@ -25,15 +25,19 @@ public class RakiaMaker extends Thread {
         while (true) {
             if(rakiaBrewery.getTotalRakiaMade()>=20)
             {
-                Thread.currentThread().interrupt();
+               // Thread.currentThread().interrupt();
                 break;
             }
            rakiaBrewery.emptyKazan();
-
-
                }
+    }
 
-
+    @Override
+    public String toString() {
+        return "RakiaMaker{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
 

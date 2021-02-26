@@ -1,13 +1,17 @@
 package main;
 
+import com.google.gson.Gson;
 import people.Harvester;
 import people.RakiaMaker;
 import rakia.Fruit;
 import rakia.Kazan;
 import rakia.RakiaBrewery;
 
+import java.io.*;
+
 public class demo {
     public static void main(String[] args) {
+
         RakiaBrewery rakidjiinica = new RakiaBrewery();
         Harvester pesho = new Harvester(20,"pesho",rakidjiinica);
         Harvester ivan = new Harvester(30,"ivan",rakidjiinica);
@@ -38,7 +42,7 @@ public class demo {
         rakidjiinica.getRakidjii().add(apostol);
         rakidjiinica.getRakidjii().add(meto);
         rakidjiinica.getRakidjii().add(kiro);
-
+        
         rakidjiinica.startWorkProces();
         try {
             pesho.join();
@@ -48,16 +52,28 @@ public class demo {
             maria.join();
             petka.join();
             krisi.join();
-            stavri.join();
-            mile.join();
-            apostol.join();
-            meto.join();
-            kiro.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        if(kiro.isAlive()){
+            kiro.interrupt();
+        }
+        if(mile.isAlive()){
+            mile.interrupt();
+        }
+        if(apostol.isAlive()){
+            apostol.interrupt();
+        }
+        if(meto.isAlive()){
+            meto.interrupt();
+        }
+        if(stavri.isAlive()){
+            stavri.interrupt();
+        }
+
         System.out.println("End of Working for RAKIA BREWERY");
+
 
     }
 }
