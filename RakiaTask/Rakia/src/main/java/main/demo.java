@@ -42,7 +42,9 @@ public class demo {
         rakidjiinica.getRakidjii().add(apostol);
         rakidjiinica.getRakidjii().add(meto);
         rakidjiinica.getRakidjii().add(kiro);
-        
+
+
+
         rakidjiinica.startWorkProces();
         try {
             pesho.join();
